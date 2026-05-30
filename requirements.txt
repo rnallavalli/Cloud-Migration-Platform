@@ -1,0 +1,49 @@
+# Core Framework
+Flask==2.3.0
+Flask-RESTful==0.3.10
+Flask-Cors==4.0.0
+Flask-SQLAlchemy==3.0.5
+
+# Database
+SQLAlchemy==2.0.0
+psycopg2-binary==2.9.6
+alembic==1.11.0
+
+# Data Processing
+pandas==2.0.0
+numpy==1.24.0
+pyyaml==6.0
+
+# Cloud SDKs
+boto3==1.26.0
+azure-identity==1.13.0
+google-cloud-compute==1.10.0
+google-cloud-storage==2.9.0
+
+# Infrastructure as Code
+terraform-cloud==2.3.0
+pykube-ng==21.9.0
+
+# Security & Auth
+PyJWT==2.8.0
+cryptography==40.0.0
+python-dotenv==1.0.0
+
+# Testing
+pytest==7.3.0
+pytest-cov==4.1.0
+requests-mock==1.11.0
+
+# Logging & Monitoring
+python-json-logger==2.0.7
+prometheus-client==0.17.0
+
+# Utilities
+requests==2.31.0
+click==8.1.0
+python-dateutil==2.8.2
+jsonschema==4.17.0
+
+# Documentation
+Sphinx==6.3.0
+sphinx-rtd-theme==1.2.0
