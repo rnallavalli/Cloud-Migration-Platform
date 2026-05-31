@@ -31,11 +31,13 @@ def create_app(config_name='development'):
     CORS(app)
 
     # Register blueprints
-    from src.api.routes import assessment_bp, project_bp, recommendation_bp, health_bp
+    from src.api.routes import assessment_bp, project_bp, recommendation_bp, health_bp, planner_bp
     app.register_blueprint(health_bp)
     app.register_blueprint(assessment_bp)
     app.register_blueprint(project_bp)
     app.register_blueprint(recommendation_bp)
+    app.register_blueprint(planner_bp)
+    app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16 MB upload limit
 
     # Create tables
     with app.app_context():

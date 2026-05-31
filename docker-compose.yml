@@ -38,12 +38,13 @@ services:
       dockerfile: Dockerfile
     container_name: cmp-api
     environment:
-      FLASK_APP: src/api/app.py
+      FLASK_APP: src.api.app
       FLASK_ENV: development
+      PYTHONPATH: /app
       DATABASE_URL: postgresql://cmp_user:cmp_password@postgres:5432/cloud_migration_db
       REDIS_URL: redis://redis:6379/0
     ports:
-      - "5000:5000"
+      - "5555:5000"
     volumes:
       - .:/app
     depends_on:
@@ -51,35 +52,18 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    command: flask run --host=0.0.0.0
+    command: python -m flask run --host=0.0.0.0 --port=5000
 
   # Node.js Web Frontend
   web:
     build:
-      context: .
-      dockerfile: Dockerfile.web
+      context: ./src/web
+      dockerfile: ../../Dockerfile.web
     container_name: cmp-web
     ports:
-      - "3000:3000"
-    volumes:
-      - ./src/web:/app/src
+      - "4000:3000"
     depends_on:
       - api
-    environment:
-      REACT_APP_API_URL: http://localhost:5000
-
-  # Nginx Reverse Proxy
-  nginx:
-    image: nginx:alpine
-    container_name: cmp-nginx
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - api
-      - web
 
 volumes:
   postgres_data:

@@ -6,6 +6,8 @@ import AssessmentDetail from './pages/AssessmentDetail';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
 import Recommendations from './pages/Recommendations';
+import MigrationPlanner from './pages/MigrationPlanner';
+import MigrationPlanDetail from './pages/MigrationPlanDetail';
 
 export default function App() {
   return (
@@ -20,6 +22,8 @@ export default function App() {
             <Route path="/projects"               element={<Projects />} />
             <Route path="/projects/:id"           element={<ProjectDetail />} />
             <Route path="/recommendations"        element={<Recommendations />} />
+            <Route path="/planner"                element={<MigrationPlanner />} />
+            <Route path="/planner/:id"            element={<MigrationPlanDetail />} />
           </Routes>
         </main>
       </div>

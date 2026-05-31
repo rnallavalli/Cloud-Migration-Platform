@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, ClipboardList, FolderKanban, Lightbulb, Activity, Cloud } from 'lucide-react';
+import { LayoutDashboard, ClipboardList, FolderKanban, Lightbulb, Activity, Cloud, Map } from 'lucide-react';
 
 const links = [
   { to:'/',              icon:LayoutDashboard, label:'Dashboard' },
   { to:'/assessments',  icon:ClipboardList,   label:'Assessments' },
   { to:'/projects',     icon:FolderKanban,    label:'Projects' },
   { to:'/recommendations', icon:Lightbulb,   label:'Recommendations' },
+  { to:'/planner',      icon:Map,             label:'Migration Planner', highlight: true },
 ];
 
 export default function Sidebar() {
@@ -34,16 +35,17 @@ export default function Sidebar() {
 
       {/* Nav */}
       <nav style={{ flex:1, padding:'4px 8px' }}>
-        {links.map(({ to, icon:Icon, label }) => (
+        {links.map(({ to, icon:Icon, label, highlight }) => (
           <NavLink key={to} to={to} end={to==='/'} style={({ isActive }) => ({
             display:'flex', alignItems:'center', gap:10, padding:'9px 10px',
             borderRadius:7, marginBottom:2, textDecoration:'none', fontSize:13, fontWeight:500,
-            color: isActive ? '#60a5fa' : '#64748b',
-            background: isActive ? '#0d1d3a' : 'transparent',
-            borderLeft: isActive ? '2px solid #3b82f6' : '2px solid transparent',
+            color: isActive ? '#60a5fa' : highlight ? '#c084fc' : '#64748b',
+            background: isActive ? '#0d1d3a' : highlight ? '#1a0d2e' : 'transparent',
+            borderLeft: isActive ? '2px solid #3b82f6' : highlight ? '2px solid #7c3aed40' : '2px solid transparent',
             transition:'all .12s',
           })}>
             <Icon size={15} /> {label}
+            {highlight && <span style={{ marginLeft:'auto', fontSize:9, background:'#7c3aed', color:'#fff', padding:'1px 5px', borderRadius:8, fontWeight:700 }}>NEW</span>}
           </NavLink>
         ))}
       </nav>
